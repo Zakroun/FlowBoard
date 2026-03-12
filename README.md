@@ -1,16 +1,161 @@
-# React + Vite
+# FlowBoard – Project Management SaaS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FlowBoard is a modern **project management web application** that helps teams organize projects, manage tasks, and collaborate efficiently using visual workflows. The platform focuses on simplicity, productivity, and a clean user experience inspired by modern SaaS tools.
 
-Currently, two official plugins are available:
+The application allows users to create projects, manage tasks, track progress, and collaborate with team members through an intuitive interface built for performance and scalability.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Project creation and management  
+- Task organization with structured workflows  
+- Team collaboration tools  
+- Clean and modern dashboard interface  
+- Responsive design for desktop and mobile devices  
+- Smooth navigation with client-side routing  
+- Scalable frontend architecture
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- **React** – UI library for building the interface  
+- **Vite** – Fast build tool and development server  
+- **Redux Toolkit** – Global state management  
+- **React Router** – Client-side routing  
+- **CSS** – Custom styling with reusable design tokens  
+- **React Icons** – Icon system for UI components
+
+---
+
+## Project Structure
+
+
+src
+│
+├── assets
+│ ├── images
+│ └── icons
+│
+├── components
+│ ├── layout
+│ ├── ui
+│ └── common
+│
+├── pages
+│ ├── Home
+│ ├── Dashboard
+│ ├── Projects
+│ ├── ProjectDetails
+│ ├── Profile
+│ └── Settings
+│
+├── redux
+│ ├── store.js
+│ └── features
+│ ├── auth
+│ ├── projects
+│ └── tasks
+│
+├── routes
+│ └── AppRoutes.jsx
+│
+├── hooks
+├── utils
+│
+├── App.jsx
+└── main.jsx
+
+
+---
+
+## Getting Started
+
+### 1. Clone the repository
+git clone https://github.com/yourusername/flowboard.git
+
+### 2.Navigate to the project directory
+cd flowboard
+
+### 3.Install dependencies
+npm install
+
+### 4.Start the development server
+npm run dev
+
+### 5.The application will be available at:
+http://localhost:5173
+
+---
+
+## Available Scripts
+
+### 1.Run development server
+npm run dev
+
+### 2.Build the project for production
+npm run build
+
+### 3.Preview the production build
+npm run preview
+
+---
+
+## Design Philosophy
+
+FlowBoard follows modern SaaS design principles:
+
+    - Clean and minimal UI
+
+    - Clear information hierarchy
+
+    - Scalable component architecture
+
+    - Reusable UI components
+
+    - Performance-focused rendering
+
+    - Consistent design tokens with CSS variables
+
+The goal is to build a platform that feels professional, fast, and intuitive for teams managing projects and tasks.
+
+---
+
+## Future Improvements
+
+Planned features for future versions include:
+
+    - Drag and drop Kanban board
+
+    - Real-time collaboration
+
+    - Notifications system
+
+    - File attachments for tasks
+
+    - Team roles and permissions
+
+    - Dark mode
+
+    - Activity logs
+
+---
+
+## License
+
+This project is open-source and available under the MIT License.
+
+## Sources
+
+React Documentation
+https://react.dev/
+
+Vite Documentation
+https://vitejs.dev/guide/
+
+Redux Toolkit Documentation
+https://redux-toolkit.js.org/
+
+React Router Documentation
+https://reactrouter.com/
