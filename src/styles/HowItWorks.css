@@ -1,0 +1,520 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+    --hiw-forest: #003934;
+    --hiw-forest-lt: #0a5449;
+    --hiw-cream: #fafaf5;
+    --hiw-white: #ffffff;
+    --hiw-muted: #64748b;
+    --hiw-border: rgba(0, 57, 52, .09);
+    --hiw-green: #4CAF88;
+    --hiw-radius: 16px;
+    --hiw-ease: cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── Section ── */
+.hiw {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--hiw-cream);
+    padding: 7rem 1.5rem;
+    overflow: hidden;
+}
+
+.hiw__inner {
+    max-width: 1100px;
+    margin-inline: auto;
+}
+
+/* ── Header ── */
+.hiw__header {
+    text-align: center;
+    margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hiw__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--hiw-forest);
+    background: rgba(0, 57, 52, .07);
+    border: 1px solid rgba(0, 57, 52, .12);
+    border-radius: 100px;
+    padding: 0.28rem 0.9rem;
+}
+
+.hiw__kicker-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--hiw-green);
+}
+
+.hiw__headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--hiw-forest);
+    margin: 0;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.hiw__headline em {
+    font-style: italic;
+    color: var(--hiw-forest-lt);
+}
+
+.hiw__sub {
+    font-size: 1.0625rem;
+    color: var(--hiw-muted);
+    max-width: 46ch;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ── Steps row ── */
+.hiw__steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+}
+
+/* ── Connector ── */
+.hiw-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 4.5rem;
+    flex-shrink: 0;
+    gap: 0.15rem;
+    opacity: 0.35;
+}
+
+.hiw-connector__line {
+    width: 40px;
+    height: 1.5px;
+    background: repeating-linear-gradient(90deg,
+            var(--hiw-forest) 0px,
+            var(--hiw-forest) 4px,
+            transparent 4px,
+            transparent 8px);
+}
+
+.hiw-connector__arrow {
+    font-size: 0.95rem;
+    color: var(--hiw-forest);
+    line-height: 1;
+    margin-top: -1px;
+}
+
+/* ── Step card ── */
+.hiw-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s var(--hiw-ease), transform 0.5s var(--hiw-ease);
+    transition-delay: var(--delay, 0ms);
+}
+
+.hiw-step--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Badge */
+.hiw-step__badge {
+    position: relative;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.hiw-step__num {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--hiw-forest);
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+.hiw-step__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 57, 52, .2);
+    background: rgba(0, 57, 52, .04);
+}
+
+.hiw-step__ring::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 57, 52, .15);
+}
+
+/* Media panel */
+.hiw-step__media {
+    width: 100%;
+    background: var(--hiw-white);
+    border: 1px solid var(--hiw-border);
+    border-radius: var(--hiw-radius);
+    box-shadow: 0 2px 4px rgba(0, 57, 52, .04), 0 10px 32px rgba(0, 57, 52, .07);
+    overflow: hidden;
+    transition: box-shadow 0.3s var(--hiw-ease), transform 0.3s var(--hiw-ease);
+}
+
+.hiw-step__media:hover {
+    box-shadow: 0 4px 8px rgba(0, 57, 52, .07), 0 18px 48px rgba(0, 57, 52, .11);
+    transform: translateY(-3px);
+}
+
+/* Copy */
+.hiw-step__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.hiw-step__title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--hiw-forest);
+    margin: 0;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+}
+
+.hiw-step__desc {
+    font-size: 0.9rem;
+    color: var(--hiw-muted);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 28ch;
+}
+
+.hiw-step__detail {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--hiw-forest);
+    opacity: 0.65;
+    letter-spacing: 0.01em;
+}
+
+.hiw-step__detail-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--hiw-green);
+    flex-shrink: 0;
+}
+
+/* ── Shared visual shell ── */
+.hiw-visual {
+    padding: 1.25rem;
+    width: 100%;
+}
+
+/* ── Create visual ── */
+.hiw-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hiw-form__row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.hiw-form__label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--hiw-muted);
+}
+
+.hiw-form__field {
+    background: #f8f9f7;
+    border: 1.5px solid var(--hiw-border);
+    border-radius: 8px;
+    padding: 0.45rem 0.65rem;
+    font-size: 0.8rem;
+    color: var(--hiw-forest);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.hiw-form__field--filled {
+    border-color: rgba(0, 57, 52, .25);
+}
+
+.hiw-form__cursor {
+    width: 1.5px;
+    height: 0.85em;
+    background: var(--hiw-forest);
+    border-radius: 1px;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.hiw-form__select {
+    justify-content: space-between;
+    color: var(--hiw-muted);
+    font-weight: 400;
+}
+
+.hiw-form__chevron {
+    font-size: 0.7rem;
+    opacity: 0.5;
+}
+
+.hiw-form__avatars {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+.hiw-form__avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--hiw-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.hiw-form__avatar--add {
+    background: #e2e8f0;
+    color: var(--hiw-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1.5px dashed #cbd5e1;
+}
+
+.hiw-form__btn {
+    margin-top: 0.25rem;
+    background: var(--hiw-forest);
+    color: white;
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.01em;
+    box-shadow: 0 2px 8px rgba(0, 57, 52, .2);
+}
+
+/* ── Tasks visual ── */
+.hiw-tasklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.hiw-taskitem {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #f8f9f7;
+    border: 1px solid var(--hiw-border);
+    border-radius: 8px;
+    padding: 0.5rem 0.65rem;
+    transition: background 0.2s;
+}
+
+.hiw-taskitem--done {
+    opacity: 0.6;
+}
+
+.hiw-taskitem--done .hiw-taskitem__label {
+    text-decoration: line-through;
+}
+
+.hiw-taskitem__check {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid #cbd5e1;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    color: white;
+    font-weight: 700;
+}
+
+.hiw-taskitem__label {
+    flex: 1;
+    font-size: 0.75rem;
+    color: #374151;
+    font-weight: 500;
+    text-align: left;
+}
+
+.hiw-taskitem__tag {
+    font-size: 0.6rem;
+    font-weight: 600;
+    border-radius: 100px;
+    padding: 0.15rem 0.45rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ── Track visual ── */
+.hiw-track {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.hiw-track__col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.hiw-track__ring-wrap {
+    position: relative;
+    width: 52px;
+    height: 52px;
+}
+
+.hiw-track__ring {
+    width: 100%;
+    height: 100%;
+}
+
+.hiw-track__pct {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.62rem;
+    font-weight: 700;
+}
+
+.hiw-track__label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--hiw-muted);
+}
+
+.hiw-track__bar-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.hiw-track__bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: var(--hiw-muted);
+    font-weight: 500;
+}
+
+.hiw-track__bar-bg {
+    height: 6px;
+    background: #e9eff4;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.hiw-track__bar-fill {
+    height: 100%;
+    width: 62%;
+    background: linear-gradient(90deg, var(--hiw-forest), var(--hiw-green));
+    border-radius: 100px;
+    animation: fillBar 1s 0.4s var(--hiw-ease) both;
+}
+
+@keyframes fillBar {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 62%;
+    }
+}
+
+/* ── Responsive ── */
+@media (max-width: 780px) {
+    .hiw {
+        padding: 5rem 1.25rem;
+    }
+
+    .hiw__steps {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .hiw-connector {
+        flex-direction: row;
+        padding-top: 0;
+        padding-left: 26px;
+        transform: rotate(90deg);
+        width: 52px;
+        align-self: center;
+    }
+
+    .hiw-step {
+        max-width: 480px;
+        align-self: center;
+        width: 100%;
+    }
+
+    .hiw__header {
+        margin-bottom: 3.5rem;
+    }
+}

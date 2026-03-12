@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+    --cta-forest: #003934;
+    --cta-forest-lt: #0a5449;
+    --cta-forest-dk: #002824;
+    --cta-green: #4CAF88;
+    --cta-white: #ffffff;
+    --cta-cream: #fafaf5;
+    --cta-muted: rgba(255, 255, 255, .55);
+    --cta-ease: cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── Section ── */
+.cta {
+    font-family: 'DM Sans', sans-serif;
+    position: relative;
+    background: var(--cta-forest-dk);
+    padding: 8rem 1.5rem;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* ── Background layers ── */
+.cta__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta__orbs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cta__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(72px);
+    opacity: 0.18;
+}
+
+.cta__orb--1 {
+    width: 500px;
+    height: 500px;
+    background: var(--cta-green);
+    top: -180px;
+    left: -120px;
+    animation: orbDrift 14s ease-in-out infinite alternate;
+}
+
+.cta__orb--2 {
+    width: 400px;
+    height: 400px;
+    background: #38bdf8;
+    bottom: -160px;
+    right: -100px;
+    animation: orbDrift 18s ease-in-out infinite alternate-reverse;
+}
+
+.cta__orb--3 {
+    width: 260px;
+    height: 260px;
+    background: #a78bfa;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.1;
+    animation: orbPulse 10s ease-in-out infinite;
+}
+
+@keyframes orbDrift {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(40px, 30px) scale(1.08);
+    }
+}
+
+@keyframes orbPulse {
+
+    0%,
+    100% {
+        opacity: 0.08;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.15;
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+}
+
+/* Thin top border accent */
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(76, 175, 136, .6), transparent);
+    z-index: 1;
+}
+
+/* ── Inner ── */
+.cta__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+}
+
+/* ── Kicker ── */
+.cta__kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--cta-green);
+    background: rgba(76, 175, 136, .12);
+    border: 1px solid rgba(76, 175, 136, .25);
+    border-radius: 100px;
+    padding: 0.28rem 0.9rem;
+}
+
+.cta__kicker-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cta-green);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 136, .5);
+    }
+
+    50% {
+        box-shadow: 0 0 0 5px rgba(76, 175, 136, 0);
+    }
+}
+
+/* ── Headline ── */
+.cta__headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: var(--cta-white);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    margin: 0;
+}
+
+.cta__headline em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--cta-green) 0%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Sub ── */
+.cta__sub {
+    font-size: 1.0625rem;
+    color: var(--cta-muted);
+    line-height: 1.75;
+    margin: 0;
+    max-width: 46ch;
+}
+
+/* ── Avatar stack ── */
+.cta__avatars {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.25rem;
+}
+
+.cta__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2.5px solid var(--cta-forest-dk);
+    margin-left: -10px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.cta__avatar:first-child {
+    margin-left: 0;
+}
+
+.cta__avatar-label {
+    font-size: 0.8rem;
+    color: var(--cta-muted);
+    font-weight: 500;
+    margin-left: 0.25rem;
+    white-space: nowrap;
+}
+
+/* ── CTA buttons ── */
+.cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.8rem 1.75rem;
+    border-radius: 9px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        transform 0.2s var(--cta-ease),
+        box-shadow 0.2s var(--cta-ease),
+        background 0.2s;
+}
+
+.cta__btn:focus-visible {
+    outline: 2px solid var(--cta-green);
+    outline-offset: 3px;
+}
+
+.cta__btn--primary {
+    background: var(--cta-cream);
+    color: var(--cta-forest);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, .25),
+        0 8px 24px rgba(0, 0, 0, .2),
+        inset 0 1px 0 rgba(255, 255, 255, .9);
+}
+
+.cta__btn--primary:hover {
+    background: var(--cta-white);
+    transform: translateY(-2px);
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, .28),
+        0 16px 36px rgba(0, 0, 0, .22),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.cta__btn--primary:active {
+    transform: none;
+}
+
+.cta__btn-arrow {
+    transition: transform 0.2s var(--cta-ease);
+    font-size: 1rem;
+}
+
+.cta__btn--primary:hover .cta__btn-arrow {
+    transform: translateX(3px);
+}
+
+.cta__btn--ghost {
+    background: rgba(255, 255, 255, .07);
+    color: rgba(255, 255, 255, .8);
+    border: 1.5px solid rgba(255, 255, 255, .14);
+    font-weight: 500;
+}
+
+.cta__btn--ghost:hover {
+    background: rgba(255, 255, 255, .12);
+    border-color: rgba(255, 255, 255, .22);
+    color: var(--cta-white);
+    transform: translateY(-1px);
+}
+
+/* ── Stats row ── */
+.cta__stats {
+    display: flex;
+    gap: 0;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .04);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.cta__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 1rem 1.75rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.45s var(--cta-ease), transform 0.45s var(--cta-ease);
+    transition-delay: var(--delay, 0s);
+}
+
+.cta__stat+.cta__stat {
+    border-left: 1px solid rgba(255, 255, 255, .08);
+}
+
+.cta__stat--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cta__stat-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--cta-white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.cta__stat-label {
+    font-size: 0.72rem;
+    color: var(--cta-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    white-space: nowrap;
+}
+
+/* ── Fine print ── */
+.cta__fine {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, .3);
+    margin: 0;
+    letter-spacing: 0.01em;
+}
+
+.cta__fine strong {
+    color: rgba(255, 255, 255, .5);
+    font-weight: 500;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+    .cta {
+        padding: 6rem 1.25rem;
+    }
+
+    .cta__stats {
+        flex-direction: column;
+    }
+
+    .cta__stat+.cta__stat {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .cta__stat {
+        padding: 0.85rem 1.5rem;
+    }
+
+    .cta__btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cta__actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 320px;
+    }
+}
