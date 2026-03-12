@@ -6,6 +6,7 @@ import Pricing from "./pages/Pricing";
 import Services from "./pages/Services";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import DashboardPage from "./Dashboard/main/DashboardPage";
 // auth
 import Login from "./auth/Login";
 import Register from "./auth/Register";
@@ -27,6 +28,7 @@ function App() {
         {/* <Route path="/verification-code" element={<VerificationCode />} /> */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/dashboard/:d?" element={<DashboardPage />} />
       </Routes>
     </>
   )

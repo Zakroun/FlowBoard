@@ -59,22 +59,25 @@ function DesktopActions() {
                     className={`navbar__desktop-action navbar__desktop-action--ghost ${isActivePage ? "navbar__desktop-action--active-page" : ""}`}
                 >
                     Dashboard
+                    <span className="navbar__desktop-action-arrow" aria-hidden="true">→</span>
                 </Link>
             ) : (
-                <Link
-                    to="/login"
-                    className={`navbar__desktop-action navbar__desktop-action--ghost ${isActivePage ? "navbar__desktop-action--active-page" : ""}`}
-                >
-                    Log in
-                </Link>
+                <>
+                    <Link
+                        to="/login"
+                        className={`navbar__desktop-action navbar__desktop-action--ghost ${isActivePage ? "navbar__desktop-action--active-page" : ""}`}
+                    >
+                        Log in
+                    </Link>
+                    <Link
+                        to="/register"
+                        className="navbar__desktop-action navbar__desktop-action--primary"
+                    >
+                        Get Started
+                        <span className="navbar__desktop-action-arrow" aria-hidden="true">→</span>
+                    </Link>
+                </>
             )}
-            <Link
-                to="/register"
-                className="navbar__desktop-action navbar__desktop-action--primary"
-            >
-                Get Started
-                <span className="navbar__desktop-action-arrow" aria-hidden="true">→</span>
-            </Link>
         </div>
     );
 }
