@@ -10,7 +10,6 @@ import Footer from "./layout/Footer";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import ResetPassword from "./auth/reset-password";
-import VerificationCode from "./auth/verfication-code";
 import ForgotPassword from "./auth/forgot-password";
 import { Route, Routes } from "react-router-dom";
 function App() {
@@ -25,9 +24,9 @@ function App() {
         <Route path="/services" element={<><Navbar /><Services /><Footer /></>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/verification-code" element={<VerificationCode />} />
+        {/* <Route path="/verification-code" element={<VerificationCode />} /> */}
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </>
   )

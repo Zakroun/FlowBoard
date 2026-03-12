@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import '../styles/Navbar.css';
+import { useSelector } from "react-redux";
 
 const NAV_LINKS = [
     { label: "Features", to: "/features" },
@@ -45,26 +46,68 @@ function NavLink({ to, label, onClick, isScrolled }) {
     );
 }
 
-function NavActions({ onLinkClick, isScrolled }) {
+function DesktopActions() {
     const { pathname } = useLocation();
     const isActivePage = pathname === "/features" || pathname === "/pricing" || pathname === "/services" || pathname === "/about" || pathname === "/contact";
+    const isAuth = useSelector((state) => state.flowboard.isAuthenticated);
 
     return (
-        <div className="navbar__actions">
-            <Link
-                to="/login"
-                className={`navbar__action navbar__action--ghost ${isActivePage && !isScrolled ? "navbar__action--active-page" : ""}`}
-                onClick={onLinkClick}
-            >
-                Log in
-            </Link>
+        <div className="navbar__desktop-actions">
+            {isAuth ? (
+                <Link
+                    to="/dashboard"
+                    className={`navbar__desktop-action navbar__desktop-action--ghost ${isActivePage ? "navbar__desktop-action--active-page" : ""}`}
+                >
+                    Dashboard
+                </Link>
+            ) : (
+                <Link
+                    to="/login"
+                    className={`navbar__desktop-action navbar__desktop-action--ghost ${isActivePage ? "navbar__desktop-action--active-page" : ""}`}
+                >
+                    Log in
+                </Link>
+            )}
             <Link
                 to="/register"
-                className="navbar__action navbar__action--primary"
-                onClick={onLinkClick}
+                className="navbar__desktop-action navbar__desktop-action--primary"
             >
                 Get Started
-                <span className="navbar__action-arrow" aria-hidden="true">→</span>
+                <span className="navbar__desktop-action-arrow" aria-hidden="true">→</span>
+            </Link>
+        </div>
+    );
+}
+
+function MobileActions({ onClick }) {
+    const isAuth = useSelector((state) => state.flowboard.isAuthenticated);
+
+    return (
+        <div className="navbar__mobile-actions">
+            {isAuth ? (
+                <Link
+                    to="/dashboard"
+                    className="navbar__mobile-action navbar__mobile-action--ghost"
+                    onClick={onClick}
+                >
+                    Dashboard
+                </Link>
+            ) : (
+                <Link
+                    to="/login"
+                    className="navbar__mobile-action navbar__mobile-action--ghost"
+                    onClick={onClick}
+                >
+                    Log in
+                </Link>
+            )}
+            <Link
+                to="/register"
+                className="navbar__mobile-action navbar__mobile-action--primary"
+                onClick={onClick}
+            >
+                Get Started
+                <span className="navbar__mobile-action-arrow" aria-hidden="true">→</span>
             </Link>
         </div>
     );
@@ -89,24 +132,31 @@ function HamburgerButton({ isOpen, onToggle, isScrolled }) {
     );
 }
 
-function MobileDrawer({ isOpen, onLinkClick, isScrolled }) {
+function MobileDrawer({ isOpen, onLinkClick }) {
     return (
         <div
             id="mobile-menu"
             className={`navbar__drawer ${isOpen ? "navbar__drawer--open" : ""}`}
             aria-hidden={!isOpen}
-            inert={!isOpen ? "" : undefined}
         >
             <div className="navbar__drawer-inner">
                 <nav aria-label="Mobile navigation">
                     <ul className="navbar__drawer-list" role="list">
                         {NAV_LINKS.map(({ label, to }) => (
-                            <NavLink isScrolled={isScrolled} key={to} to={to} label={label} onClick={onLinkClick} />
+                            <li key={to} className="navbar__drawer-item">
+                                <Link
+                                    to={to}
+                                    className="navbar__drawer-link"
+                                    onClick={onLinkClick}
+                                >
+                                    {label}
+                                </Link>
+                            </li>
                         ))}
                     </ul>
                 </nav>
                 <div className="navbar__drawer-footer">
-                    <NavActions onLinkClick={onLinkClick} isScrolled={isScrolled} />
+                    <MobileActions onClick={onLinkClick} />
                 </div>
             </div>
         </div>
@@ -153,20 +203,18 @@ export default function Navbar() {
             >
                 <div className="navbar__inner">
                     <NavLogo isScrolled={isScrolled} />
-                    <nav aria-label="Primary navigation">
-                        <ul className="navbar__list" role="list">
+                    <nav aria-label="Primary navigation" className="navbar__desktop-nav">
+                        <ul className="navbar__desktop-list" role="list">
                             {NAV_LINKS.map(({ label, to }) => (
                                 <NavLink key={to} to={to} label={label} isScrolled={isScrolled} />
                             ))}
                         </ul>
                     </nav>
-                    <div className="navbar__actions" aria-label="Account actions">
-                        <NavActions isScrolled={isScrolled} />
-                    </div>
+                    <DesktopActions />
                     <HamburgerButton isOpen={menuOpen} onToggle={toggleMenu} isScrolled={isScrolled} />
                 </div>
             </header>
-            <MobileDrawer isOpen={menuOpen} onLinkClick={closeMenu} isScrolled={isScrolled} />
+            <MobileDrawer isOpen={menuOpen} onLinkClick={closeMenu} />
         </>
     );
 }

@@ -42,9 +42,9 @@
     max-width: 1180px;
     margin-inline: auto;
     padding-inline: 1.5rem;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 2rem;
 }
 
@@ -109,13 +109,18 @@
     border-radius: 2px;
 }
 
-.navbar__list {
+.navbar__desktop-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar__desktop-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 0.25rem;
 }
 
@@ -188,14 +193,14 @@
     transform: translateX(-50%) scaleX(1);
 }
 
-.navbar__actions {
+.navbar__desktop-actions {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     flex-shrink: 0;
 }
 
-.navbar__action {
+.navbar__desktop-action {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -210,51 +215,51 @@
     white-space: nowrap;
 }
 
-.navbar__action:focus-visible {
+.navbar__desktop-action:focus-visible {
     outline: 2px solid var(--nb-forest);
     outline-offset: 3px;
 }
 
-.navbar__action--ghost {
+.navbar__desktop-action--ghost {
     color: var(--nb-forest);
     background: transparent;
 }
 
-.navbar__action--active-page {
+.navbar__desktop-action--active-page {
     color: var(--nb-white) !important;
 }
 
-.navbar__action--ghost:hover {
+.navbar__desktop-action--ghost:hover {
     background: rgba(0, 57, 52, 0.07);
 }
 
-.navbar__action--active-page:hover {
+.navbar__desktop-action--active-page:hover {
     background: rgba(255, 255, 255, 0.15) !important;
     color: var(--nb-white) !important;
 }
 
-.navbar__action--primary {
+.navbar__desktop-action--primary {
     background: var(--nb-forest);
     color: var(--nb-white);
     box-shadow: 0 1px 3px rgba(0, 57, 52, 0.25), 0 3px 10px rgba(0, 57, 52, 0.12);
 }
 
-.navbar__action--primary:hover {
+.navbar__desktop-action--primary:hover {
     background: var(--nb-forest-hover);
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0, 57, 52, 0.28), 0 6px 18px rgba(0, 57, 52, 0.15);
 }
 
-.navbar__action--primary:active {
+.navbar__desktop-action--primary:active {
     transform: translateY(0);
 }
 
-.navbar__action-arrow {
+.navbar__desktop-action-arrow {
     font-size: 0.9rem;
     transition: transform var(--nb-transition);
 }
 
-.navbar__action--primary:hover .navbar__action-arrow {
+.navbar__desktop-action--primary:hover .navbar__desktop-action-arrow {
     transform: translateX(3px);
 }
 
@@ -274,10 +279,11 @@
     transition: background var(--nb-transition), border-color var(--nb-transition);
     flex-shrink: 0;
 }
-.navbar__hamburger--active-page{
 
+.navbar__hamburger--active-page {
     border-color: rgba(255, 255, 255, 0.7);
 }
+
 .navbar__hamburger:hover {
     background: rgba(0, 57, 52, 0.05);
     border-color: rgba(0, 57, 52, 0.2);
@@ -299,10 +305,8 @@
         opacity 180ms ease,
         width 200ms ease;
 }
-.navbar__hamburger-bar--active{
-    background: var(--nb-white);
-}
-.navbar__link--active-page .navbar__hamburger-bar {
+
+.navbar__hamburger-bar--active {
     background: var(--nb-white);
 }
 
@@ -352,26 +356,26 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
 }
 
-.navbar__drawer-list .navbar__link {
-    font-size: 1rem;
-    padding: 0.65rem 0.75rem;
-    justify-content: flex-start;
+.navbar__drawer-item {
     width: 100%;
 }
 
-.navbar__drawer-list .navbar__link--active-page {
-    color: var(--nb-forest) !important;
+.navbar__drawer-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--nb-muted);
+    text-decoration: none;
+    border-radius: var(--nb-radius);
+    transition: all var(--nb-transition);
 }
 
-.navbar__drawer-list .navbar__link--active-page .navbar__link-underline {
-    background: var(--nb-forest);
-}
-
-.navbar__drawer-list .navbar__link--active-page:hover {
-    color: var(--nb-forest) !important;
+.navbar__drawer-link:hover {
+    color: var(--nb-forest);
     background: rgba(0, 57, 52, 0.05);
 }
 
@@ -381,25 +385,55 @@
     padding-top: 1.5rem;
 }
 
-.navbar__drawer-footer .navbar__actions {
+.navbar__mobile-actions {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    gap: 0.6rem;
+    gap: 0.75rem;
 }
 
-.navbar__drawer-footer .navbar__action {
+.navbar__mobile-action {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 0.7rem 1rem;
+    gap: 0.5rem;
+    padding: 0.875rem 1rem;
     font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--nb-radius);
+    text-decoration: none;
+    transition: all var(--nb-transition);
 }
 
-.navbar__drawer-footer .navbar__action--active-page {
-    color: var(--nb-forest) !important;
+.navbar__mobile-action--ghost {
+    color: var(--nb-forest);
+    background: transparent;
+    border: 1px solid var(--nb-border);
 }
 
-.navbar__drawer-footer .navbar__action--active-page:hover {
-    background: rgba(0, 57, 52, 0.07) !important;
-    color: var(--nb-forest) !important;
+.navbar__mobile-action--ghost:hover {
+    background: rgba(0, 57, 52, 0.05);
+    border-color: rgba(0, 57, 52, 0.2);
+}
+
+.navbar__mobile-action--primary {
+    background: var(--nb-forest);
+    color: var(--nb-white);
+    box-shadow: 0 1px 3px rgba(0, 57, 52, 0.25), 0 3px 10px rgba(0, 57, 52, 0.12);
+}
+
+.navbar__mobile-action--primary:hover {
+    background: var(--nb-forest-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 57, 52, 0.28), 0 6px 18px rgba(0, 57, 52, 0.15);
+}
+
+.navbar__mobile-action-arrow {
+    font-size: 1rem;
+    transition: transform var(--nb-transition);
+}
+
+.navbar__mobile-action--primary:hover .navbar__mobile-action-arrow {
+    transform: translateX(4px);
 }
 
 .navbar__overlay {
@@ -420,8 +454,8 @@
 }
 
 @media (max-width: 860px) {
-    .navbar__list,
-    .navbar__actions {
+    .navbar__desktop-nav,
+    .navbar__desktop-actions {
         display: none;
     }
 
@@ -430,7 +464,7 @@
     }
 
     .navbar__inner {
-        grid-template-columns: auto 1fr auto;
+        padding-inline: 1rem;
     }
 }
 
